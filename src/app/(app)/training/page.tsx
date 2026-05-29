@@ -1,142 +1,109 @@
+"use client";
+
 import React from 'react';
-import { PlayCircle, ShieldCheck, Bone, Footprints, Medal } from 'lucide-react';
+import Link from 'next/link';
+import { Bone, Footprints, ShieldCheck, PlayCircle, Star } from 'lucide-react';
 
 export default function TrainingPage() {
-  const profileScores = [
-    { label: "Energia", score: 85, color: "bg-primary" },
-    { label: "Obediência", score: 60, color: "bg-green-500" },
-    { label: "Sociabilidade", score: 95, color: "bg-blue-500" },
-    { label: "Ansiedade", score: 30, color: "bg-red-500" },
-    { label: "Foco", score: 45, color: "bg-yellow-500" },
-    { label: "Agressividade", score: 5, color: "bg-red-900" },
+  const plans = [
+    {
+      id: "basico",
+      title: "Básico e Obediência",
+      description: "Comandos essenciais para o dia a dia e boa convivência.",
+      progress: 40,
+      lessons: 10,
+      completed: 4,
+      icon: Bone,
+      color: "text-[#FF6B00]",
+      bg: "bg-[#FF6B00]/10",
+      border: "border-[#FF6B00]/30",
+      active: true,
+    },
+    {
+      id: "passeio",
+      title: "Passeio Perfeito",
+      description: "Aprenda a passear sem o cão puxar a guia e ignorar distrações.",
+      progress: 0,
+      lessons: 8,
+      completed: 0,
+      icon: Footprints,
+      color: "text-blue-500",
+      bg: "bg-blue-500/10",
+      border: "border-blue-500/30",
+      active: false,
+    },
+    {
+      id: "avancado",
+      title: "Truques Avançados",
+      description: "Desafie a mente do seu cão com truques divertidos.",
+      progress: 0,
+      lessons: 15,
+      completed: 0,
+      icon: Star,
+      color: "text-purple-500",
+      bg: "bg-purple-500/10",
+      border: "border-purple-500/30",
+      active: false,
+    }
   ];
 
   return (
-    <div className="flex flex-col gap-8 animate-fade-in pb-24 md:pb-0">
+    <div className="flex flex-col">
       
-      <div>
-        <h1 className="text-3xl font-bold text-white font-display mb-1">Treinamento e Comportamento</h1>
-        <p className="text-text-muted text-sm">Perfil comportamental avaliado pela IA e planos de aula.</p>
+      {/* Hero Simples */}
+      <div className="mb-10 p-8 rounded-2xl bg-gradient-to-r from-[#FF6B00]/20 to-transparent border border-[#FF6B00]/10 relative overflow-hidden">
+        <div className="relative z-10">
+          <h1 className="text-3xl font-bold text-white mb-2">Planos de Adestramento</h1>
+          <p className="text-[#A0A0A0] max-w-lg">
+            Aulas personalizadas baseadas no perfil comportamental do seu pet. Siga os planos para melhorar a convivência e a disciplina.
+          </p>
+        </div>
+        <ShieldCheck className="absolute -right-4 -bottom-10 w-48 h-48 text-[#FF6B00] opacity-10" />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        
-        {/* Perfil Comportamental */}
-        <div className="xl:col-span-1 glass-card p-6 flex flex-col">
-          <div className="flex items-center gap-2 mb-6">
-            <ShieldCheck className="w-5 h-5 text-primary" />
-            <h2 className="text-xl font-bold text-white">Perfil Comportamental</h2>
-          </div>
-
-          <div className="flex flex-col gap-4 mb-6">
-            {profileScores.map((item, idx) => (
-              <div key={idx}>
-                <div className="flex justify-between text-xs font-bold mb-1">
-                  <span className="text-text-secondary">{item.label}</span>
-                  <span className="text-white">{item.score}/100</span>
-                </div>
-                <div className="w-full bg-surface border border-border-glass rounded-full h-2 overflow-hidden">
-                  <div className={`h-full ${item.color} rounded-full`} style={{ width: `${item.score}%` }} />
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {plans.map((plan) => (
+          <Link 
+            href={`/training/${plan.id}`} 
+            key={plan.id}
+            className="flex flex-col bg-[#1A1A1A] p-6 rounded-xl border border-white/[0.06] hover:bg-white/[0.02] transition-all group relative overflow-hidden"
+          >
+            {/* Background Icon */}
+            <plan.icon className={`absolute -right-4 -bottom-4 w-32 h-32 ${plan.color} opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all`} />
+            
+            <div className="flex items-center gap-4 mb-4 relative z-10">
+              <div className={`w-12 h-12 rounded-xl ${plan.bg} border ${plan.border} flex items-center justify-center`}>
+                <plan.icon className={`w-6 h-6 ${plan.color}`} />
               </div>
-            ))}
-          </div>
-
-          <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 flex-1">
-            <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Análise da IA</h3>
-            <p className="text-sm text-text-secondary leading-relaxed">
-              O Apollo possui energia e sociabilidade altíssimas, o que é ótimo! Porém, o foco está um pouco baixo. Recomendamos aulas curtas (10-15min) focadas em comandos básicos antes das refeições para melhorar a concentração.
-            </p>
-          </div>
-        </div>
-
-        {/* Planos e Aulas */}
-        <div className="xl:col-span-2 flex flex-col gap-6">
-          
-          <h2 className="text-xl font-bold text-white">Planos de Treinamento</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="glass-card p-5 relative overflow-hidden group border-primary/30">
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Bone className="w-20 h-20 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-1">Básico e Obediência</h3>
-              <p className="text-sm text-text-muted mb-4">Comandos essenciais para o dia a dia.</p>
-              
-              <div className="flex justify-between text-xs font-bold mb-1">
-                <span className="text-text-secondary">Progresso</span>
-                <span className="text-primary">40%</span>
-              </div>
-              <div className="w-full bg-surface rounded-full h-1.5 mb-4">
-                <div className="h-full bg-primary rounded-full" style={{ width: '40%' }} />
-              </div>
-              
-              <span className="text-xs font-medium text-text-muted">4 de 10 aulas concluídas</span>
+              {plan.active && (
+                <span className="px-2 py-1 rounded bg-[#22C55E]/10 text-[#22C55E] text-[10px] font-bold uppercase tracking-wider border border-[#22C55E]/20">
+                  Em andamento
+                </span>
+              )}
+            </div>
+            
+            <div className="relative z-10 mb-6 flex-1">
+              <h2 className="text-xl font-bold text-white mb-1">{plan.title}</h2>
+              <p className="text-[#A0A0A0] text-sm">{plan.description}</p>
             </div>
 
-            <div className="glass-card p-5 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Footprints className="w-20 h-20 text-white" />
+            <div className="relative z-10">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-white text-sm font-bold">{plan.progress}% concluído</span>
+                <span className="text-[#A0A0A0] text-xs">{plan.completed} de {plan.lessons} aulas</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">Passeio Perfeito</h3>
-              <p className="text-sm text-text-muted mb-4">Andar sem puxar a guia e ignorar gatilhos.</p>
-              
-              <div className="flex justify-between text-xs font-bold mb-1">
-                <span className="text-text-secondary">Progresso</span>
-                <span className="text-white">0%</span>
+              <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden mb-4">
+                <div className={`h-full ${plan.color.replace('text', 'bg')} rounded-full`} style={{ width: `${plan.progress}%` }} />
               </div>
-              <div className="w-full bg-surface rounded-full h-1.5 mb-4">
-                <div className="h-full bg-white/20 rounded-full" style={{ width: '0%' }} />
+              <div className="flex items-center gap-2 text-[#FF6B00] text-sm font-medium group-hover:translate-x-1 transition-transform">
+                <PlayCircle className="w-4 h-4" />
+                Acessar plano
               </div>
-              
-              <span className="text-xs font-medium text-text-muted">0 de 8 aulas concluídas</span>
             </div>
-          </div>
-
-          <h2 className="text-xl font-bold text-white mt-2">Próximas Aulas (Básico)</h2>
-          
-          <div className="flex flex-col gap-3">
-            <div className="glass-card p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 shrink-0">
-                  <PlayCircle className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold">Comando "Fica" (Distância)</h4>
-                  <div className="flex gap-3 text-xs text-text-muted mt-1 font-medium">
-                    <span className="text-yellow-500">Médio</span>
-                    <span>•</span>
-                    <span>10 min</span>
-                    <span>•</span>
-                    <span>Praticado 2x</span>
-                  </div>
-                </div>
-              </div>
-              <button className="btn-primary py-2 px-4 text-sm w-full md:w-auto">Continuar</button>
-            </div>
-
-            <div className="glass-card p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 opacity-70">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-surface-hover flex items-center justify-center border border-border-glass shrink-0">
-                  <Medal className="w-5 h-5 text-text-muted" />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold">Deita e Rola</h4>
-                  <div className="flex gap-3 text-xs text-text-muted mt-1 font-medium">
-                    <span>Avançado</span>
-                    <span>•</span>
-                    <span>15 min</span>
-                    <span>•</span>
-                    <span>Não iniciado</span>
-                  </div>
-                </div>
-              </div>
-              <button className="btn-secondary py-2 px-4 text-sm w-full md:w-auto">Iniciar</button>
-            </div>
-          </div>
-
-        </div>
+          </Link>
+        ))}
       </div>
+
     </div>
   );
 }

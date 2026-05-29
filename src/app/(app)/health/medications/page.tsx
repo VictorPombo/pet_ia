@@ -1,31 +1,140 @@
 "use client";
 
-import { Pill, Plus, Clock } from "lucide-react";
+import React from "react";
+import { Plus, Pill, Clock, CalendarDays, CheckCircle2 } from "lucide-react";
 
 export default function MedicationsPage() {
+  const continuousMeds = [
+    {
+      id: 1,
+      name: "Condroitina & Glicosamina",
+      dosage: "1 comprimido",
+      frequency: "1x ao dia",
+      time: "08:00",
+      next: "Amanhã",
+      icon: Pill,
+    },
+    {
+      id: 2,
+      name: "Simparic 20kg",
+      dosage: "1 comprimido",
+      frequency: "A cada 35 dias",
+      time: "Livre",
+      next: "12 Jun 2026",
+      icon: CheckCircle2,
+    }
+  ];
+
+  const temporaryMeds = [
+    {
+      id: 3,
+      name: "Amoxicilina 500mg",
+      dosage: "1/2 comprimido",
+      frequency: "De 12 em 12h",
+      time: "08:00 e 20:00",
+      duration: "7 dias (Faltam 3)",
+      next: "Hoje, 20:00",
+      icon: Clock,
+      progress: 60, // 60% concluído
+    }
+  ];
+
   return (
-    <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="w-24 h-24 rounded-full bg-[#111827] border border-white/5 flex items-center justify-center mb-6 relative">
-        <Pill className="w-10 h-10 text-[#A56BFF]" />
-        <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-[#FFC857] flex items-center justify-center border-4 border-[#0D1B2A]">
-          <Clock className="w-4 h-4 text-black" />
+    <div className="flex flex-col gap-8">
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl font-bold text-white">Medicações</h2>
+        <button className="flex items-center gap-2 px-4 py-2 bg-[#FF6B00] hover:bg-orange-600 text-white rounded-lg text-sm font-medium transition-colors">
+          <Plus className="w-4 h-4" />
+          <span className="hidden md:inline">Novo Medicamento</span>
+        </button>
+      </div>
+
+      {/* Uso Contínuo */}
+      <div>
+        <h3 className="text-[#A0A0A0] text-sm font-bold uppercase tracking-wider mb-4">Uso Contínuo / Prevenção</h3>
+        <div className="flex flex-col gap-4">
+          {continuousMeds.map((med) => (
+            <div key={med.id} className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-[#1A1A1A] rounded-xl border border-white/[0.06] gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-white/[0.04] flex items-center justify-center border border-white/[0.06] shrink-0">
+                  <med.icon className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-white text-[16px] font-bold">{med.name}</h4>
+                  <p className="text-[#A0A0A0] text-sm">{med.dosage}</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-8 md:gap-12 bg-white/[0.02] p-3 rounded-lg border border-white/[0.04] md:border-none md:bg-transparent md:p-0">
+                <div className="flex flex-col">
+                  <span className="text-[#666] text-xs">Frequência</span>
+                  <span className="text-white text-sm font-medium">{med.frequency}</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#666] text-xs">Horário</span>
+                  <span className="text-white text-sm font-medium">{med.time}</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#666] text-xs">Próxima dose</span>
+                  <span className="text-[#FF6B00] text-sm font-bold">{med.next}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      
-      <h2 className="text-[24px] font-bold text-[#FFFFFF] mb-3">Receitas e Medicamentos</h2>
-      <p className="text-[#F4F6F8] text-[15px] max-w-md mb-8 leading-relaxed">
-        Controle antipulgas, vermífugos e tratamentos contínuos do Thor. Nossa IA criará os alarmes automaticamente com base na receita do veterinário.
-      </p>
 
-      <button className="bg-[#A56BFF] hover:bg-[#8B4EE5] text-white px-8 py-3.5 rounded-xl text-[15px] font-bold flex items-center gap-2 transition-colors shadow-lg shadow-[#A56BFF]/20">
-        <Plus className="w-5 h-5" />
-        Adicionar Medicamento
-      </button>
+      {/* Tratamento Temporário */}
+      <div>
+        <h3 className="text-[#A0A0A0] text-sm font-bold uppercase tracking-wider mb-4">Tratamentos em Andamento</h3>
+        <div className="flex flex-col gap-4">
+          {temporaryMeds.map((med) => (
+            <div key={med.id} className="flex flex-col p-5 bg-[#1A1A1A] rounded-xl border border-[#3B82F6]/30 gap-4 relative overflow-hidden">
+              <div className="absolute top-0 left-0 bottom-0 w-1 bg-[#3B82F6]" />
+              
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-[#3B82F6]/10 flex items-center justify-center shrink-0">
+                    <med.icon className="w-6 h-6 text-[#3B82F6]" />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-[16px] font-bold">{med.name}</h4>
+                    <p className="text-[#A0A0A0] text-sm">{med.dosage}</p>
+                  </div>
+                </div>
 
-      <p className="text-[#788794] text-[13px] mt-6 flex items-center gap-1.5">
-        <span className="w-2 h-2 rounded-full bg-[#00D1B2] animate-pulse"></span>
-        IA monitorando horários
-      </p>
+                <div className="flex items-center gap-8 md:gap-12 bg-[#3B82F6]/5 p-3 rounded-lg border border-[#3B82F6]/10 md:border-none md:bg-transparent md:p-0">
+                  <div className="flex flex-col">
+                    <span className="text-[#666] text-xs">Frequência</span>
+                    <span className="text-white text-sm font-medium">{med.frequency}</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[#666] text-xs">Duração</span>
+                    <span className="text-white text-sm font-medium">{med.duration}</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[#666] text-xs">Próxima dose</span>
+                    <span className="text-[#3B82F6] text-sm font-bold">{med.next}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="mt-2">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[#A0A0A0] text-xs">Progresso do tratamento</span>
+                  <span className="text-[#A0A0A0] text-xs font-bold">{med.progress}%</span>
+                </div>
+                <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+                  <div className="h-full bg-[#3B82F6] rounded-full" style={{ width: `${med.progress}%` }} />
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }
