@@ -12,48 +12,48 @@ export default function Compare() {
   ];
 
   return (
-    <section style={{ padding: '80px 24px', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div className="text-center" style={{ marginBottom: '48px' }}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+    <section className="py-12 px-0 md:py-20 md:px-6 relative overflow-hidden">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="text-center mb-8 md:mb-12 px-4 md:px-0">
+          <h2 className="text-[22px] md:text-4xl font-bold text-white">
             ClosePet vs. o que existe hoje
           </h2>
         </div>
 
         {/* Real HTML table with overflow-x auto for mobile */}
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', maxWidth: '900px', margin: '0 auto', borderCollapse: 'collapse' }}>
+        <div className="overflow-x-auto px-4 md:px-0 -webkit-overflow-scrolling-touch">
+          <table className="w-full min-w-[500px] max-w-[900px] mx-auto border-collapse text-[13px] md:text-[15px]">
             <thead>
-              <tr style={{ background: '#1A1A1A' }}>
-                <th style={{ padding: '16px 24px', textAlign: 'left', color: '#999', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>Funcionalidade</th>
-                <th style={{ padding: '16px 24px', textAlign: 'center', color: '#999', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>Apps comuns</th>
-                <th style={{ padding: '16px 24px', textAlign: 'center', color: '#FF6B00', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>ClosePet</th>
+              <tr className="bg-[#1A1A1A]">
+                <th className="p-3 md:p-4 text-left text-[#999] text-[11px] md:text-[12px] font-bold uppercase tracking-wider border-b border-white/[0.06] rounded-tl-xl">Funcionalidade</th>
+                <th className="p-3 md:p-4 text-center text-[#999] text-[11px] md:text-[12px] font-bold uppercase tracking-wider border-b border-white/[0.06]">Apps comuns</th>
+                <th className="p-3 md:p-4 text-center text-primary text-[11px] md:text-[12px] font-bold uppercase tracking-wider border-b border-white/[0.06] rounded-tr-xl">ClosePet</th>
               </tr>
             </thead>
             <tbody>
               {comparison.map((item, idx) => (
                 <tr key={idx} className="hover:bg-white/5 transition-colors">
-                  <td style={{ padding: '16px 24px', borderBottom: '1px solid rgba(255,255,255,0.06)', verticalAlign: 'middle', color: '#fff', fontWeight: 500, fontSize: '15px' }}>
+                  <td className="p-3 md:p-4 border-b border-white/[0.06] align-middle text-white font-medium">
                     {item.feature}
                   </td>
-                  <td style={{ padding: '16px 24px', borderBottom: '1px solid rgba(255,255,255,0.06)', verticalAlign: 'middle', textAlign: 'center' }}>
+                  <td className="p-3 md:p-4 border-b border-white/[0.06] align-middle text-center">
                     {item.common.has ? (
                       <div className="flex flex-col items-center gap-1">
-                        <Check className="w-5 h-5 text-gray-500" />
-                        {item.common.text && <span className="text-[12px] text-[#666]">{item.common.text}</span>}
+                        <Check className="w-4 h-4 md:w-5 md:h-5 text-gray-500" />
+                        {item.common.text && <span className="text-[11px] md:text-[12px] text-[#666]">{item.common.text}</span>}
                       </div>
                     ) : (
-                      <X className="w-5 h-5 text-[#333] mx-auto" />
+                      <X className="w-4 h-4 md:w-5 md:h-5 text-[#333] mx-auto" />
                     )}
                   </td>
-                  <td style={{ padding: '16px 24px', borderBottom: '1px solid rgba(255,255,255,0.06)', verticalAlign: 'middle', textAlign: 'center' }}>
+                  <td className="p-3 md:p-4 border-b border-white/[0.06] align-middle text-center">
                     {item.petia.has ? (
                       <div className="flex flex-col items-center gap-1">
-                        <Check className="w-5 h-5 text-primary" />
-                        {item.petia.text && <span className="text-[12px] text-primary/80 font-medium">{item.petia.text}</span>}
+                        <Check className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                        {item.petia.text && <span className="text-[11px] md:text-[12px] text-primary/80 font-medium">{item.petia.text}</span>}
                       </div>
                     ) : (
-                      <X className="w-5 h-5 text-[#333] mx-auto" />
+                      <X className="w-4 h-4 md:w-5 md:h-5 text-[#333] mx-auto" />
                     )}
                   </td>
                 </tr>

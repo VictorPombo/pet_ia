@@ -34,10 +34,10 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" style={{ padding: '80px 24px', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <div className="text-center" style={{ marginBottom: '48px' }}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+    <section id="faq" className="py-12 px-4 md:py-20 md:px-6 relative overflow-hidden">
+      <div className="max-w-[800px] mx-auto">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-[22px] md:text-4xl font-bold text-white">
             Dúvidas frequentes
           </h2>
         </div>
@@ -46,18 +46,17 @@ export default function FAQ() {
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <div key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 0' }}>
+              <div key={i} className="border-b border-white/[0.06] py-3 md:py-5">
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="w-full text-left flex items-center justify-between focus:outline-none"
-                  style={{ gap: '16px' }}
+                  className="w-full text-left flex items-center justify-between focus:outline-none gap-4"
                 >
-                  <span className="text-[16px] font-bold text-white">{faq.question}</span>
+                  <span className="text-[15px] md:text-[16px] font-bold text-white py-2 md:py-0">{faq.question}</span>
                   <ChevronDown className={`w-5 h-5 text-primary shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {isOpen && (
-                  <div className="text-[#999] text-[14px] leading-relaxed" style={{ paddingTop: '12px' }}>
+                  <div className="text-[#999] text-[14px] leading-relaxed pt-2 pb-2 md:pt-3 md:pb-0">
                     {faq.answer}
                   </div>
                 )}

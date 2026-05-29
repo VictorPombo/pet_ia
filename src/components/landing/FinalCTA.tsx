@@ -3,17 +3,17 @@ import Link from 'next/link';
 
 export default function FinalCTA() {
   return (
-    <section style={{ padding: '80px 24px', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #0A0A0A, #1a0a00)', textAlign: 'center' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.1] tracking-tight" style={{ marginBottom: '32px' }}>
+    <section className="py-12 px-4 md:py-20 md:px-6 relative overflow-hidden bg-gradient-to-br from-[#0A0A0A] to-[#1a0a00] text-center">
+      <div className="max-w-[800px] mx-auto">
+        <h2 className="text-[22px] md:text-5xl font-bold text-white leading-[1.2] md:leading-[1.1] tracking-tight mb-6 md:mb-8">
           Seu pet merece o melhor cuidado. <span className="text-primary">Comece agora.</span>
         </h2>
         
-        <Link href="/register" className="inline-block bg-white text-black hover:bg-gray-100 font-bold text-lg transition-colors" style={{ padding: '16px 32px', borderRadius: '12px', marginBottom: '16px' }}>
+        <Link href="/register" className="inline-block bg-white text-black hover:bg-gray-100 font-bold transition-colors w-full md:w-auto px-8 py-4 md:py-4 rounded-xl text-[16px] md:text-[18px] mb-4">
           Criar conta grátis
         </Link>
         
-        <p className="text-[#666] text-sm">
+        <p className="text-[#666] text-[13px] md:text-sm">
           Sem cartão de crédito. Cancele quando quiser.
         </p>
       </div>

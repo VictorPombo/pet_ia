@@ -21,19 +21,19 @@ export default function AllFeatures() {
   ];
 
   return (
-    <section id="funcionalidades" style={{ padding: '80px 24px', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div className="text-center" style={{ marginBottom: '48px' }}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+    <section id="funcionalidades" className="py-12 px-4 md:py-20 md:px-6 relative overflow-hidden">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-[22px] md:text-4xl font-bold text-white">
             Tudo que o ClosePet faz pelo seu pet
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '20px 40px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px] md:gap-x-10 md:gap-y-5">
           {allFeatures.map((feat, i) => (
-            <div key={i} className="flex items-start" style={{ gap: '12px' }}>
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" style={{ marginTop: '2px' }} />
-              <span className="text-[#B0B0B0] leading-snug text-[15px]">
+            <div key={i} className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+              <span className="text-[#B0B0B0] leading-snug text-[14px] md:text-[15px]">
                 {feat}
               </span>
             </div>

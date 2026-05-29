@@ -41,14 +41,14 @@ export default function Header() {
         }`}
       />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 h-[68px] flex items-center justify-between">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 md:px-6 h-[56px] md:h-[68px] flex items-center justify-between">
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-orange-700 flex items-center justify-center shadow-[0_0_20px_rgba(255,107,0,0.25)] group-hover:shadow-[0_0_30px_rgba(255,107,0,0.4)] transition-shadow duration-300">
-            <PawPrint className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl bg-gradient-to-br from-primary to-orange-700 flex items-center justify-center shadow-[0_0_20px_rgba(255,107,0,0.25)] group-hover:shadow-[0_0_30px_rgba(255,107,0,0.4)] transition-shadow duration-300">
+            <PawPrint className="w-4 h-4 md:w-5 md:h-5 text-white" />
           </div>
-          <span className="text-[20px] font-bold text-white tracking-tight">
+          <span className="text-[18px] md:text-[20px] font-bold text-white tracking-tight">
             Close<span className="text-primary">Pet</span>
           </span>
         </Link>
@@ -81,7 +81,6 @@ export default function Header() {
           >
             Começar grátis
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
-            {/* Shine effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </Link>
         </div>
@@ -95,32 +94,36 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (Fullscreen Overlay) */}
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 transition-all duration-300 ${
+        className={`lg:hidden fixed inset-0 top-[56px] bg-[#0A0A0A] z-40 transition-all duration-300 overflow-y-auto ${
           mobileMenuOpen
-            ? 'opacity-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 -translate-y-2 pointer-events-none'
+            ? 'opacity-100 translate-x-0 pointer-events-auto'
+            : 'opacity-0 translate-x-full pointer-events-none'
         }`}
       >
-        <div className="bg-[#0D0D0D]/95 backdrop-blur-xl border-b border-white/5 p-6 flex flex-col gap-1 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-[15px] font-medium text-[#ccc] hover:text-white py-3 px-4 rounded-xl hover:bg-white/5 transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="h-px bg-white/[0.06] my-3" />
-          <Link href="/login" className="text-center py-3 text-white font-medium border border-white/10 rounded-xl hover:bg-white/5 transition-colors">
-            Entrar
-          </Link>
-          <Link href="/register" className="text-center py-3 bg-primary text-white font-bold rounded-xl shadow-[0_0_20px_rgba(255,107,0,0.2)] flex items-center justify-center gap-2 mt-1">
-            Começar grátis <ArrowRight className="w-4 h-4" />
-          </Link>
+        <div className="p-6 flex flex-col gap-4 min-h-[calc(100vh-56px)]">
+          <div className="flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-[16px] font-medium text-[#ccc] hover:text-white py-4 border-b border-white/[0.06] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          
+          <div className="mt-auto flex flex-col gap-3 pb-8">
+            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="text-center py-4 text-white font-medium border border-white/10 rounded-xl hover:bg-white/5 transition-colors w-full">
+              Entrar
+            </Link>
+            <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="text-center py-4 bg-primary hover:bg-orange-600 text-white font-bold rounded-xl shadow-[0_0_20px_rgba(255,107,0,0.2)] flex items-center justify-center gap-2 w-full">
+              Começar grátis <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </header>
