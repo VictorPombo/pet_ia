@@ -2,64 +2,75 @@ import React from 'react';
 import { Check, X } from 'lucide-react';
 
 export default function Compare() {
-  const comparison = [
-    { feature: "Vacinas", common: { text: "Básico", has: true }, petia: { text: "Com alertas automáticos", has: true } },
-    { feature: "IA veterinária", common: { text: "", has: false }, petia: { text: "Com histórico do pet", has: true } },
-    { feature: "Controle financeiro", common: { text: "", has: false }, petia: { text: "Com projeção anual", has: true } },
-    { feature: "Timeline emocional", common: { text: "", has: false }, petia: { text: "Álbum cronológico", has: true } },
-    { feature: "Treinamento com progresso", common: { text: "", has: false }, petia: { text: "Aulas + IA comportamental", has: true } },
-    { feature: "Rotina visual", common: { text: "", has: false }, petia: { text: "Grade semanal completa", has: true } },
+  const commonFeatures = [
+    "Apenas vacinas básicas",
+    "Sem IA veterinária",
+    "Zero controle financeiro",
+    "Fotos espalhadas no celular",
+    "Sem treinamento guiado",
+    "Sem alertas personalizados"
+  ];
+
+  const petiaFeatures = [
+    "Vacinas com alertas automáticos",
+    "IA que analisa histórico do pet",
+    "Projeção anual de gastos",
+    "Timeline cronológica com marcos",
+    "Aulas com IA comportamental",
+    "Central de alertas com prioridade"
   ];
 
   return (
-    <section className="py-12 px-0 md:py-20 md:px-6 relative overflow-hidden">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="text-center mb-8 md:mb-12 px-4 md:px-0">
-          <h2 className="text-[22px] md:text-4xl font-bold text-white">
-            ClosePet vs. o que existe hoje
+    <section className="bg-section-even py-24 relative overflow-hidden">
+      <div className="max-w-[1000px] mx-auto px-4 md:px-6">
+        
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16 reveal visible">
+          <h2 className="text-white">
+            Por que <span className="gradient-text">ClosePet?</span>
           </h2>
         </div>
 
-        {/* Real HTML table with overflow-x auto for mobile */}
-        <div className="overflow-x-auto px-4 md:px-0 -webkit-overflow-scrolling-touch">
-          <table className="w-full min-w-[500px] max-w-[900px] mx-auto border-collapse text-[13px] md:text-[15px]">
-            <thead>
-              <tr className="bg-[#1A1A1A]">
-                <th className="p-3 md:p-4 text-left text-[#999] text-[11px] md:text-[12px] font-bold uppercase tracking-wider border-b border-white/[0.06] rounded-tl-xl">Funcionalidade</th>
-                <th className="p-3 md:p-4 text-center text-[#999] text-[11px] md:text-[12px] font-bold uppercase tracking-wider border-b border-white/[0.06]">Apps comuns</th>
-                <th className="p-3 md:p-4 text-center text-primary text-[11px] md:text-[12px] font-bold uppercase tracking-wider border-b border-white/[0.06] rounded-tr-xl">ClosePet</th>
-              </tr>
-            </thead>
-            <tbody>
-              {comparison.map((item, idx) => (
-                <tr key={idx} className="hover:bg-white/5 transition-colors">
-                  <td className="p-3 md:p-4 border-b border-white/[0.06] align-middle text-white font-medium">
-                    {item.feature}
-                  </td>
-                  <td className="p-3 md:p-4 border-b border-white/[0.06] align-middle text-center">
-                    {item.common.has ? (
-                      <div className="flex flex-col items-center gap-1">
-                        <Check className="w-4 h-4 md:w-5 md:h-5 text-gray-500" />
-                        {item.common.text && <span className="text-[11px] md:text-[12px] text-[#666]">{item.common.text}</span>}
-                      </div>
-                    ) : (
-                      <X className="w-4 h-4 md:w-5 md:h-5 text-[#333] mx-auto" />
-                    )}
-                  </td>
-                  <td className="p-3 md:p-4 border-b border-white/[0.06] align-middle text-center">
-                    {item.petia.has ? (
-                      <div className="flex flex-col items-center gap-1">
-                        <Check className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-                        {item.petia.text && <span className="text-[11px] md:text-[12px] text-primary/80 font-medium">{item.petia.text}</span>}
-                      </div>
-                    ) : (
-                      <X className="w-4 h-4 md:w-5 md:h-5 text-[#333] mx-auto" />
-                    )}
-                  </td>
-                </tr>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          
+          {/* Coluna Esquerda: Outros apps */}
+          <div className="glass-card flex flex-col items-center md:items-start text-center md:text-left reveal visible stagger border-white/[0.03] opacity-80">
+            <h3 className="text-[20px] font-bold text-white mb-8">Outros apps</h3>
+            <ul className="flex flex-col gap-5 w-full">
+              {commonFeatures.map((feat, i) => (
+                <li key={i} className="flex flex-col md:flex-row items-center md:items-start gap-3">
+                  <X className="w-5 h-5 text-[#555] shrink-0" />
+                  <span className="text-[#555] text-[15px] line-through decoration-[#555]/50">
+                    {feat}
+                  </span>
+                </li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          </div>
+
+          {/* Coluna Direita: ClosePet */}
+          <div className="relative rounded-2xl p-[1px] reveal visible stagger overflow-hidden bg-gradient-to-br from-[#FF6B00]/30 to-transparent">
+            {/* Inner Content */}
+            <div className="bg-[#111] rounded-2xl p-8 flex flex-col items-center md:items-start text-center md:text-left h-full relative">
+              {/* Subtle background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B00]/[0.03] to-transparent pointer-events-none rounded-2xl" />
+              
+              <h3 className="text-[20px] font-bold text-white mb-8 relative z-10">ClosePet</h3>
+              <ul className="flex flex-col gap-5 w-full relative z-10">
+                {petiaFeatures.map((feat, i) => (
+                  <li key={i} className="flex flex-col md:flex-row items-center md:items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#FF6B00] to-[#FF4D00] flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-white text-[15px] font-bold">
+                      {feat}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

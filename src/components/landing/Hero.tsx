@@ -1,96 +1,110 @@
 import React from 'react';
-import { ArrowRight, Brain, Zap, Shield, HeartPulse, FileText, CheckCircle, PawPrint } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden py-12 px-4 pt-24 md:pt-[152px] md:pb-[80px] md:px-6">
-      <div className="max-w-[1200px] mx-auto">
-        
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center text-center md:text-left">
+    <section className="relative overflow-hidden bg-[#050505] min-h-[100vh] flex items-center pt-24 md:pt-32 pb-16">
+      <div className="max-w-[1200px] w-full mx-auto px-5 md:px-6 z-10 relative">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-8">
           
-          {/* LEFT — Text (50%) */}
-          <div className="flex-1 flex flex-col items-center md:items-start min-w-0">
-            <h1 className="text-[28px] md:text-[48px] lg:text-[56px] font-bold leading-[1.15] md:leading-[1.1] tracking-tight text-white mb-6">
-              Seu pet com veterinário<br />
-              <span className="text-primary text-[28px] md:text-[56px] lg:text-[64px]">24 horas por dia</span>
+          {/* Left Column - Text (55%) */}
+          <div className="flex-1 w-full flex flex-col items-center md:items-start text-center md:text-left reveal visible">
+            
+            {/* Micro-label */}
+            <div className="inline-flex items-center gap-2 bg-[#FF6B00]/[0.08] border border-[#FF6B00]/20 rounded-full px-4 py-1.5 mb-6 md:mb-8">
+              <span className="text-[13px] text-[#FF8534] tracking-[0.02em] font-medium">✨ A #1 plataforma pet com IA do Brasil</span>
+            </div>
+            
+            {/* Title */}
+            <h1 className="font-extrabold text-white mb-6 tracking-tight">
+              Seu pet com veterinário <br className="hidden md:block" />
+              <span className="gradient-text">24 horas por dia</span>
             </h1>
             
-            <p className="text-[14px] md:text-[15px] text-[#999] leading-[1.6] md:leading-[1.7] max-w-[440px] mb-8 md:mb-10">
-              Descreva os sintomas, receba avaliação instantânea e saiba se precisa correr ao vet. Inteligência artificial treinada em medicina veterinária.
+            {/* Subtitle */}
+            <p className="text-[#888] mb-8 md:mb-10 max-w-[500px]">
+              Descreva os sintomas, receba avaliação instantânea e saiba se precisa correr ao vet.
             </p>
             
-            <div className="flex flex-col md:flex-row gap-3 mb-10 md:mb-12 w-full md:w-auto">
-              <a href="#consultar" className="bg-primary text-white hover:bg-orange-600 font-bold transition-colors flex items-center justify-center gap-2 text-[15px] md:text-[14px] px-7 py-3.5 md:py-3.5 rounded-lg w-full md:w-auto">
-                Consultar agora — grátis <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#como-funciona" className="text-white font-medium hover:bg-white/5 transition-colors flex items-center justify-center text-[15px] md:text-[14px] px-7 py-3.5 md:py-3.5 rounded-lg border border-[#333] w-full md:w-auto">
-                Como funciona
+            {/* Buttons */}
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto mb-10 md:mb-12">
+              <Link href="/register" className="glow-btn px-8 py-4 rounded-xl font-semibold text-[16px] flex items-center justify-center gap-2 w-full md:w-auto">
+                Começar grátis <ArrowRight className="w-5 h-5" />
+              </Link>
+              <a href="#como-funciona" className="bg-transparent border border-white/12 text-[#CCC] hover:border-white/30 transition-all px-8 py-4 rounded-xl font-semibold text-[16px] flex items-center justify-center w-full md:w-auto">
+                Ver como funciona
               </a>
             </div>
             
-            <div className="flex flex-col md:flex-row items-center md:items-start flex-wrap gap-4 md:gap-10">
-              <div className="flex items-center gap-3">
-                <Brain className="w-7 h-7 text-primary" />
-                <div className="text-left">
-                  <p className="text-white font-bold text-[13px] leading-tight">IA veterinária</p>
-                  <p className="text-[#666] text-[11px]">Especializada</p>
-                </div>
+            {/* Social Proof */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <div className="flex -space-x-3">
+                <div className="w-10 h-10 rounded-full border-2 border-[#050505] bg-[#333] flex items-center justify-center text-[10px]">👩🏻</div>
+                <div className="w-10 h-10 rounded-full border-2 border-[#050505] bg-[#444] flex items-center justify-center text-[10px]">👨🏼</div>
+                <div className="w-10 h-10 rounded-full border-2 border-[#050505] bg-[#555] flex items-center justify-center text-[10px]">👩🏽</div>
               </div>
-              <div className="flex items-center gap-3">
-                <Zap className="w-7 h-7 text-primary" />
-                <div className="text-left">
-                  <p className="text-white font-bold text-[13px] leading-tight">Resposta em segundos</p>
-                  <p className="text-[#666] text-[11px]">Agilidade total</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Shield className="w-7 h-7 text-primary" />
-                <div className="text-left">
-                  <p className="text-white font-bold text-[13px] leading-tight">Dados protegidos</p>
-                  <p className="text-[#666] text-[11px]">100% seguro</p>
+              <div className="flex flex-col items-start text-left">
+                <div className="text-[13px] text-[#888] font-medium">Mais de 50.000 tutores confiam</div>
+                <div className="text-[13px] text-white font-bold flex items-center gap-1">
+                  <Star className="w-4 h-4 text-[#FF6B00] fill-[#FF6B00]" /> 4,9/5
                 </div>
               </div>
             </div>
           </div>
           
-          {/* RIGHT — Circular Dog Image with Glow + Badges */}
-          <div className="flex-1 flex items-center justify-center min-w-0 mt-4 md:mt-0 w-full">
+          {/* Right Column - Visual (45%) */}
+          <div className="flex-1 w-full md:w-[45%] flex justify-center relative mt-8 md:mt-0 reveal visible" style={{ transitionDelay: '0.2s' }}>
             
-            {/* Camada 1 — Glow container */}
-            <div className="w-[220px] h-[220px] md:w-[380px] md:h-[380px] lg:w-[500px] lg:h-[500px] rounded-full relative flex items-center justify-center mx-auto" style={{ background: 'radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%)' }}>
+            {/* Background Glow */}
+            <div className="absolute inset-0 z-0 rounded-full" style={{ background: 'radial-gradient(circle at center, rgba(255,107,0,0.12) 0%, transparent 60%)' }}></div>
+            
+            {/* Mockup Frame */}
+            <div className="relative z-10 w-[90%] md:w-full max-w-[400px] aspect-[9/19] bg-[#0A0A0A] rounded-[32px] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.6)] overflow-hidden md:[transform:perspective(1200px)_rotateY(-8deg)_rotateX(3deg)] transition-transform duration-500 hover:md:[transform:perspective(1200px)_rotateY(-4deg)_rotateX(1deg)]">
               
-              {/* Camada 2 — Anel/borda visível com overflow hidden */}
-              <div className="w-[220px] h-[220px] md:w-[310px] md:h-[310px] lg:w-[420px] lg:h-[420px] rounded-full border border-[rgba(255,107,0,0.3)] relative overflow-hidden flex items-center justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src="/images/hero-dog.png?v=3" 
-                  alt="Golden Retriever" 
-                  className="w-full h-full object-cover object-top rounded-full"
-                />
+              {/* Fake App Content */}
+              <div className="flex flex-col h-full bg-[#0A0A0A]">
+                {/* Header */}
+                <div className="px-5 pt-10 pb-4 border-b border-white/[0.05]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#1A1A1A] border border-white/10 overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/hero-dog.png" alt="Pet" className="w-full h-full object-cover" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                    </div>
+                    <div>
+                      <div className="text-white text-[14px] font-bold">Apollo</div>
+                      <div className="text-[#888] text-[11px]">Golden Retriever • 2 anos</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Body - Chat IA */}
+                <div className="flex-1 p-5 flex flex-col gap-4">
+                  <div className="bg-[#1A1A1A] p-3 rounded-2xl rounded-tl-none self-start max-w-[85%] border border-white/[0.03]">
+                    <p className="text-[13px] text-white">Olá! Como o Apollo está se sentindo hoje?</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-[#FF6B00] to-[#E8450A] p-3 rounded-2xl rounded-tr-none self-end max-w-[85%]">
+                    <p className="text-[13px] text-white">Ele está com diarreia desde ontem à noite e não quis comer a ração hoje de manhã.</p>
+                  </div>
+                  <div className="bg-[#1A1A1A] p-4 rounded-2xl rounded-tl-none self-start w-full border border-white/[0.03]">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-6 h-6 rounded-full bg-[#FF6B00]/20 flex items-center justify-center">
+                        <span className="text-[#FF6B00] text-[12px]">🧠</span>
+                      </div>
+                      <span className="text-[12px] text-[#FF8534] font-bold">Análise IA</span>
+                    </div>
+                    <p className="text-[12px] text-[#CCC] leading-relaxed mb-3">
+                      Como o Apollo é um cão jovem (2 anos) e não tem histórico de alergias graves, a falta de apetite com diarreia pode ser um desarranjo intestinal leve.
+                    </p>
+                    <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-2">
+                      <span className="text-red-400 text-[11px] font-bold">Atenção:</span>
+                      <span className="text-[#AAA] text-[11px]"> Observe se há vômito. Mantenha ele hidratado. Se não melhorar em 24h, busque um veterinário.</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              {/* Badges - Hidden on Mobile */}
-              <div className="hidden md:flex absolute top-[5%] left-[-15%] bg-[rgba(26,26,26,0.8)] backdrop-blur-md border border-[rgba(255,107,0,0.2)] rounded-lg px-3.5 py-2 text-[13px] text-white items-center gap-2 whitespace-nowrap">
-                <HeartPulse className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-[11px] lg:text-[13px]">Análise de sintomas com IA avançada</span>
-              </div>
-
-              <div className="hidden md:flex absolute top-[5%] right-[-15%] bg-[rgba(26,26,26,0.8)] backdrop-blur-md border border-[rgba(255,107,0,0.2)] rounded-lg px-3.5 py-2 text-[13px] text-white items-center gap-2 whitespace-nowrap">
-                <CheckCircle className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-[11px] lg:text-[13px]">Orientação segura e confiável</span>
-              </div>
-
-              <div className="hidden md:flex absolute top-[55%] left-[-20%] bg-[rgba(26,26,26,0.8)] backdrop-blur-md border border-[rgba(255,107,0,0.2)] rounded-lg px-3.5 py-2 text-[13px] text-white items-center gap-2 whitespace-nowrap">
-                <FileText className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-[11px] lg:text-[13px]">Avaliação instantânea em segundos</span>
-              </div>
-
-              <div className="hidden md:flex absolute top-[55%] right-[-15%] bg-[rgba(26,26,26,0.8)] backdrop-blur-md border border-[rgba(255,107,0,0.2)] rounded-lg px-3.5 py-2 text-[13px] text-white items-center gap-2 whitespace-nowrap">
-                <PawPrint className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-[11px] lg:text-[13px]">Baseado em estudos veterinários</span>
-              </div>
-
             </div>
+            
           </div>
         </div>
       </div>

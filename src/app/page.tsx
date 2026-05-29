@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
-import FeaturesBar from '@/components/landing/FeaturesBar';
-import HowItWorks from '@/components/landing/HowItWorks';
 import StatsBar from '@/components/landing/StatsBar';
-import AllFeatures from '@/components/landing/AllFeatures';
+import Features from '@/components/landing/Features';
+import ProductInAction from '@/components/landing/ProductInAction';
+import HowItWorks from '@/components/landing/HowItWorks';
 import Compare from '@/components/landing/Compare';
 import Pricing from '@/components/landing/Pricing';
 import Testimonials from '@/components/landing/Testimonials';
@@ -17,10 +17,10 @@ export default function Home() {
     <main className="min-h-screen bg-background flex flex-col selection:bg-primary/30 selection:text-white">
       <Header />
       <Hero />
-      <FeaturesBar />
-      <HowItWorks />
       <StatsBar />
-      <AllFeatures />
+      <Features />
+      <ProductInAction />
+      <HowItWorks />
       <Compare />
       <Pricing />
       <Testimonials />

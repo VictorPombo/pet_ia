@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Plus } from 'lucide-react';
 
 export default function FAQ() {
   const faqs = [
@@ -34,11 +34,12 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-12 px-4 md:py-20 md:px-6 relative overflow-hidden">
-      <div className="max-w-[800px] mx-auto">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-[22px] md:text-4xl font-bold text-white">
-            Dúvidas frequentes
+    <section id="faq" className="bg-section-odd py-24 relative overflow-hidden">
+      <div className="max-w-[720px] mx-auto px-4 md:px-6">
+        
+        <div className="text-center mb-16 reveal visible">
+          <h2 className="text-white">
+            Perguntas frequentes
           </h2>
         </div>
 
@@ -46,24 +47,31 @@ export default function FAQ() {
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <div key={i} className="border-b border-white/[0.06] py-3 md:py-5">
+              <div key={i} className="border-b border-white/[0.05] py-6 reveal visible stagger">
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="w-full text-left flex items-center justify-between focus:outline-none gap-4"
+                  className="w-full text-left flex items-center justify-between focus:outline-none gap-4 cursor-pointer"
                 >
-                  <span className="text-[15px] md:text-[16px] font-bold text-white py-2 md:py-0">{faq.question}</span>
-                  <ChevronDown className={`w-5 h-5 text-primary shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                  <span className="text-[17px] font-semibold text-white">{faq.question}</span>
+                  <Plus className={`w-5 h-5 text-[#888] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-45 text-white' : ''}`} />
                 </button>
                 
-                {isOpen && (
-                  <div className="text-[#999] text-[14px] leading-relaxed pt-2 pb-2 md:pt-3 md:pb-0">
+                <div 
+                  className="overflow-hidden transition-all duration-300 ease-in-out"
+                  style={{ 
+                    maxHeight: isOpen ? '200px' : '0px',
+                    opacity: isOpen ? 1 : 0
+                  }}
+                >
+                  <div className="text-[#888] text-[15px] leading-[1.7] pt-3">
                     {faq.answer}
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );
