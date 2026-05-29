@@ -1,132 +1,130 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Plus, Camera, Cake, TrendingUp, Syringe, Stethoscope, Medal, Image as ImageIcon } from 'lucide-react';
+import React from "react";
+import { Plus, ChevronDown } from "lucide-react";
+import Image from "next/image";
+
+type TimelineCategory = 'aniversario' | 'peso' | 'vacina' | 'vet' | 'habilidade' | 'momento';
 
 export default function TimelinePage() {
   const events = [
     {
       id: 1,
-      type: 'photo',
-      title: "Nova caminha!",
-      desc: "Apollo amou a caminha nova que compramos na Petz.",
-      date: "14 de Maio de 2026",
-      icon: Camera,
-      color: "bg-purple-500",
-      image: true
+      date: "20 Maio 2026",
+      type: "habilidade" as TimelineCategory,
+      title: "Aprendeu a dar a pata!",
+      desc: "Depois de 3 dias de treino com petisco, Apollo finalmente entendeu o comando 'pata'.",
+      image: null,
     },
     {
       id: 2,
-      type: 'weight',
-      title: "Pesagem mensal",
-      desc: "32.4 kg. O veterinário disse que o peso está ideal para a idade e porte.",
-      date: "10 de Maio de 2026",
-      icon: TrendingUp,
-      color: "bg-blue-500",
-      image: false
+      date: "12 Maio 2026",
+      type: "momento" as TimelineCategory,
+      title: "Primeira ida ao parque",
+      desc: "Ele ficou com medo dos outros cachorros no começo, mas depois brincou bastante.",
+      image: "/images/hero-dog.png", // Usando a mesma imagem placeholder
     },
     {
       id: 3,
-      type: 'vaccine',
-      title: "Vacina V10",
-      desc: "Tomou a dose anual da Múltipla. Ficou um pouco quieto à tarde mas depois melhorou.",
-      date: "05 de Maio de 2026",
-      icon: Syringe,
-      color: "bg-green-500",
-      image: false
+      date: "05 Maio 2026",
+      type: "vacina" as TimelineCategory,
+      title: "Vacina V10 Completa",
+      desc: "Última dose da V10 aplicada na clínica. Ele se comportou super bem.",
+      image: null,
     },
     {
       id: 4,
-      type: 'birthday',
-      title: "Aniversário de 3 anos! 🎉",
-      desc: "Fizemos um bolinho de carne e ele devorou em 5 segundos.",
-      date: "12 de Abril de 2026",
-      icon: Cake,
-      color: "bg-primary",
-      image: true
+      date: "10 Abril 2026",
+      type: "peso" as TimelineCategory,
+      title: "Pesagem mensal: 12kg",
+      desc: "Ganhamos 1kg desde o mês passado. O veterinário disse que está no peso ideal para a idade.",
+      image: null,
     },
     {
       id: 5,
-      type: 'vet',
-      title: "Check-up Anual",
-      desc: "Tudo certo com os exames de sangue. Coração forte!",
-      date: "10 de Abril de 2026",
-      icon: Stethoscope,
-      color: "bg-cyan-500",
-      image: false
-    },
-    {
-      id: 6,
-      type: 'skill',
-      title: "Aprendeu a dar a pata!",
-      desc: "Finalmente conseguimos ensinar o 'Dar a pata' usando petiscos de frango.",
-      date: "20 de Março de 2026",
-      icon: Medal,
-      color: "bg-yellow-500",
-      image: false
+      date: "15 Março 2026",
+      type: "aniversario" as TimelineCategory,
+      title: "Apollo chegou em casa! 🏠",
+      desc: "O primeiro dia do nosso filhote na casa nova. Muito choro a noite, mas muito amor.",
+      image: null,
     }
   ];
 
+  const getBadgeStyle = (t: TimelineCategory) => {
+    switch (t) {
+      case 'aniversario': return { label: '🎂 Aniversário', style: 'bg-[rgba(236,72,153,0.1)] text-[#EC4899]' };
+      case 'peso': return { label: '⚖ Peso', style: 'bg-[rgba(59,130,246,0.1)] text-[#3B82F6]' };
+      case 'vacina': return { label: '💉 Vacina', style: 'bg-[rgba(34,197,94,0.1)] text-[#22C55E]' };
+      case 'vet': return { label: '🏥 Vet', style: 'bg-[rgba(239,68,68,0.1)] text-[#EF4444]' };
+      case 'habilidade': return { label: '🐾 Habilidade', style: 'bg-[rgba(255,107,0,0.1)] text-[#FF6B00]' };
+      case 'momento': return { label: '📸 Momento', style: 'bg-[rgba(128,128,128,0.1)] text-[#A0A0A0]' };
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-6 animate-fade-in pb-24 md:pb-0">
-      
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-white font-display mb-1">Timeline</h1>
-          <p className="text-text-muted text-sm">A história do Apollo em um álbum cronológico.</p>
-        </div>
-        <button className="btn-primary py-2 px-4 text-sm">
-          <Plus className="w-4 h-4" />
-          Novo Momento
-        </button>
-      </div>
-
-      <div className="flex gap-2 overflow-x-auto scrollbar-none pb-2 mb-4">
-        <button className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap bg-white text-black">Todos</button>
-        <button className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap bg-surface border border-border-glass text-text-muted flex items-center gap-2"><ImageIcon className="w-4 h-4" /> Fotos</button>
-        <button className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap bg-surface border border-border-glass text-text-muted flex items-center gap-2"><Stethoscope className="w-4 h-4" /> Saúde</button>
-        <button className="px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap bg-surface border border-border-glass text-text-muted flex items-center gap-2"><Medal className="w-4 h-4" /> Conquistas</button>
-      </div>
-
-      {/* Timeline List */}
-      <div className="relative pl-6 md:pl-8 max-w-3xl">
+    <div className="flex flex-col">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <h1 className="text-[22px] font-bold text-white">Timeline</h1>
         
-        {/* Vertical Line */}
-        <div className="absolute left-[39px] md:left-[47px] top-4 bottom-0 w-0.5 bg-border-glass z-0" />
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <button className="flex items-center gap-2 px-3 py-2 bg-transparent border border-white/[0.1] rounded-lg text-sm text-white hover:bg-white/[0.05]">
+            Filtrar por <ChevronDown className="w-4 h-4 text-[#808080]" />
+          </button>
+          
+          <button className="flex items-center gap-1 px-4 py-2 bg-[#FF6B00] hover:bg-orange-600 text-white rounded-lg text-sm font-medium transition-colors ml-auto md:ml-0">
+            Adicionar momento <Plus className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
 
-        <div className="flex flex-col gap-8 relative z-10">
-          {events.map((event) => (
-            <div key={event.id} className="relative flex items-start gap-6">
+      {/* Layout vertical com linha */}
+      <div className="max-w-[700px] w-full mx-auto relative pb-10">
+        
+        {/* Linha vertical */}
+        <div className="absolute left-[16px] top-2 bottom-0 w-[2px] bg-white/[0.06] z-0" />
+
+        {/* Eventos */}
+        {events.map((event) => {
+          const badge = getBadgeStyle(event.type);
+          
+          return (
+            <div key={event.id} className="ml-[16px] pl-[32px] mb-8 relative z-10">
               
-              {/* Timeline Icon Node */}
-              <div className={`w-10 h-10 rounded-full ${event.color} flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,0,0,0.5)] border-4 border-[#111111] z-10 relative`}>
-                <event.icon className="w-4 h-4 text-white" />
-              </div>
-              
-              {/* Event Content */}
-              <div className="flex-1 glass-card overflow-hidden hover:border-primary/30 transition-colors">
+              {/* Bolinha na linha */}
+              <div className="absolute left-[-8px] top-[6px] w-[14px] h-[14px] rounded-full bg-[#FF6B00] border-2 border-[#0A0A0A]" />
+
+              {/* Conteúdo */}
+              <div className="flex flex-col">
+                <span className="text-[13px] text-[#808080] mb-2">{event.date}</span>
+                
+                <div className="flex items-center mb-3">
+                  <span className={`text-[11px] font-bold px-2.5 py-1 rounded-[10px] ${badge.style}`}>
+                    {badge.label}
+                  </span>
+                </div>
+
+                <h3 className="text-[16px] font-bold text-white mb-1.5 leading-tight">{event.title}</h3>
+                <p className="text-[14px] text-[#808080] leading-relaxed">{event.desc}</p>
+
                 {event.image && (
-                  <div className="w-full h-48 bg-[#2A2A2A] relative flex items-center justify-center border-b border-border-glass group cursor-pointer overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/10 group-hover:scale-105 transition-transform" />
-                    <ImageIcon className="w-10 h-10 text-text-muted opacity-50 relative z-10" />
+                  <div className="mt-3 relative w-full h-[200px] sm:h-[280px] rounded-xl overflow-hidden border border-white/[0.04]">
+                    <Image 
+                      src={event.image} 
+                      alt="Momento"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 )}
-                <div className="p-5 flex flex-col gap-2">
-                  <div className="flex justify-between items-start gap-4">
-                    <h3 className="text-lg font-bold text-white">{event.title}</h3>
-                    <span className="text-xs text-text-muted whitespace-nowrap">{event.date}</span>
-                  </div>
-                  <p className="text-sm text-text-secondary leading-relaxed">
-                    {event.desc}
-                  </p>
-                </div>
               </div>
 
             </div>
-          ))}
-        </div>
+          );
+        })}
+
       </div>
-      
+
     </div>
   );
 }
