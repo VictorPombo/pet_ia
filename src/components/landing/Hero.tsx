@@ -69,7 +69,7 @@ export default function Hero() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-[#1A1A1A] border border-white/10 overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/images/hero-dog.png" alt="Pet" className="w-full h-full object-cover" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                      <img src="/images/hero-dog.png" alt="Pet" className="w-full h-full object-cover" />
                     </div>
                     <div>
                       <div className="text-white text-[14px] font-bold">Apollo</div>
