@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Plus, Footprints, Bone, Moon, Dribbble, Brain, Bath, Pill } from 'lucide-react';
+import { Plus, Footprints, Bone, Moon, Activity, Brain, Bath, Pill } from 'lucide-react';
 
 export default function RoutinePage() {
   // Mock data states to simulate toggle
@@ -25,7 +25,7 @@ export default function RoutinePage() {
       case 'walk': return { color: 'text-orange-400', bg: 'bg-orange-500/10', border: 'border-orange-500/20', icon: Footprints };
       case 'food': return { color: 'text-green-400', bg: 'bg-green-500/10', border: 'border-green-500/20', icon: Bone };
       case 'rest': return { color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20', icon: Moon };
-      case 'play': return { color: 'text-yellow-400', bg: 'bg-yellow-500/10', border: 'border-yellow-500/20', icon: Dribbble };
+      case 'play': return { color: 'text-yellow-400', bg: 'bg-yellow-500/10', border: 'border-yellow-500/20', icon: Activity };
       case 'train': return { color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/20', icon: Brain };
       case 'hygiene': return { color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', icon: Bath };
       case 'med': return { color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/20', icon: Pill };
